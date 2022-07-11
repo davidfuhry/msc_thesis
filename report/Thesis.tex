@@ -1,0 +1,151 @@
+% !TeX program = xelatex
+% !BIB program = biber
+
+\documentclass[a4paper, monochrome]{article}
+
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{placeins}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{todonotes}
+\usepackage{booktabs}
+\usepackage{tablefootnote}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{tabularx}
+\sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+\usepackage[english, german, ngerman]{babel}
+\usepackage[
+    backend=biber,
+    style=apa,
+    autocite=inline,
+    mincitenames=1,
+    maxcitenames=2
+]{biblatex}
+
+\addbibresource{thesis-literature.bib}
+\addbibresource{thesis-software.bib}
+\addbibresource{thesis-online.bib}
+
+
+
+\selectlanguage{ngerman}
+
+\def\UrlFont{\rmfamily}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+
+        \textbf{\Large Bildbasierte Digitalisierung von historischen Toninformationsträgern}
+
+        \vspace{0.5cm}
+        Untertitel
+                
+        \vspace{1.5cm}
+
+
+        \vfill
+                
+        Master-Arbeit zur Erlangung des akademischen Grades eines\\
+        M.Sc. Digital Humanities
+
+        \vspace{3cm}
+                
+        Eingereicht von: David Fuhry
+        
+        \vspace{0.2cm}
+
+        Matrikel-Nr. 3704472\\
+        Zschochersche Str. 32\\
+        04229 Leipzig
+
+        \vspace{1cm}
+
+        Betreuer: Jun.-Prof. Dr. Phil. Manuel Burghardt
+        
+        \vspace{0.2cm}
+                    
+        Computational Humanities\\
+        Institut für Informatik\\
+        Universität Leipzig\\
+        Augustusplatz 10\\
+        04109 Leipzig 
+                
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\thispagestyle{empty}
+
+\newpage
+
+% Introduction
+
+\pagenumbering{arabic}
+
+\input{content/introduction}
+
+% Theorie
+
+\input{content/theorie}
+
+% Vorgehen
+
+\input{content/vorgehen}
+
+% Umsetzung
+
+\input{content/umsetzung}
+
+% Ergebnisse
+
+\input{content/ergebnisse}
+
+% Fazit
+
+\input{content/fazit}
+
+\clearpage
+
+%
+% ---- Bibliography ----
+%
+%
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+\printbibliography[title=Literatur, keyword=literature]
+\printbibliography[title=Software, keyword=software]
+\printbibliography[title=Online, keyword=online]
+
+\clearpage
+
+% Die eidesstattliche Erklärung mit Unterschrift
+\textbf{Erklärung der Urheberschaft}
+
+\vspace{1cm}
+
+Hiermit erkläre ich, daß ich die vorliegende Arbeit
+selbstständig angefertigt, nicht anderweitig zu Prüfungszwecken vorgelegt und
+keine anderen als die angegebenen Hilfsmittel verwendet habe. Sämtliche 
+wissentlich verwendete Textausschnitte, Zitate oder Inhalte anderer Verfasser 
+wurden ausdrücklich als solche gekennzeichnet.
+
+\vfill
+
+\hspace{2cm} \textbf{Leipzig, 13.08.2021} \hspace{2cm} \includegraphics[scale=0.3]{graphics/signature.png}
+
+
+\vspace{1cm}
+
+\hspace{2cm} Ort, Datum \hfill Unterschrift \hspace{2cm}
+
+
+\end{document}
