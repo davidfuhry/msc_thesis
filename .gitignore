@@ -328,3 +328,8 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
+# Literature pdfs
+
+literature/**
+
+.DS_Store
