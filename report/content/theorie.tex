@@ -1,1 +1,15 @@
 \section{Theoretische Perspektiven}
+
+Das Player Piano Projekt an der Stanford University (\textit{SUPRA}) wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der Bibliothek von Stanford Forscher:innen und anderen interessierten zugänglich zu machen \parencite*[]{shi_2019}.
+Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford von denen gut 1000 digitalisiert wurden \parencite*[]{broadwell_2022}.
+Das Projekt fokussierte sich dabei zunächst auf die digitalisierung von Notenrollen des Typs Welte T-100\footnote{Auch rote Welte Rollen genannt, da sie meist auf roten Papiert produziert wurden.}, die erste Form der reproduzierenden Notenrolle.
+
+Für die digitalisierung wurde zunächst ein Gerät konstruiert, dass es erlaubt hochauflösende\footnote{TIFF mit 300dpi Auflösung.} Bilder der Notenrollen zu erstellen.
+Um eine hochwertige Emulation der Originalrollen zu ermöglichen wurden zunächst einige Fehlerkorrekturen vorgenommen.
+Es wurde etwa eine Korrektur zur begradigung der Notenrollenscans eingesetzt um die, grade in den späteteren Teilen der Rollen, auftretenden Verzerrungen zu korrigieren.
+Weiterhin wurden Löcher die uncharacteristisch\footnote{Beispielsweise von Form oder Orientierung} und vermutlich auf Beschädigungen zurückzuführen sind herausgefiltert und schnell aufeinanderfolgende Löcher die als einzelne Note gespielt werden\footnote{Sogenannte \textit{Bridges}.} zusammengefasst \parencite*[519f]{shi_2019}.
+
+Um nun eine möglichst originalgetreue emulation eines Originalabspielgerätes zu erreichen untersuchten \textcite[521f]{shi_2019} die Funktion der vorhandenen Steuerungsfuntktionen auf den Welte Rollen mithilfe von Originaldokumenten, Testrollen und weiteren Quellen.
+Die so decodierten Informationen wendeten sie dann bei der Erstellung der Midi Dateien und in folge für die daraus generierten Audio Repräsentationen an.
+Es wurden schlussendlich noch einige kleinere Korrekturen angewendet wie eine korrektur der bauartbedingte Tempsteigerung die beim abspielen der Originalrollen typisch war bevor die erzeugten Midis durch ein generisches Software-Piano gerendert wurden.
+

@@ -333,3 +333,5 @@ TSWLatexianTemp*
 literature/**
 
 .DS_Store
+
+*.pdf
