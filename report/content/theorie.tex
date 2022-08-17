@@ -1,15 +1,41 @@
-\section{Theoretische Perspektiven}
+\section{Forschungsstand}
 
-Das Player Piano Projekt an der Stanford University (\textit{SUPRA}) wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der Bibliothek von Stanford Forscher:innen und anderen interessierten zugänglich zu machen \parencite*[]{shi_2019}.
-Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford von denen gut 1000 digitalisiert wurden \parencite*[]{broadwell_2022}.
+Die überwältigende Mehrheit der Arbeiten zur Digitalisierung von Historischen Toninformationsträgern beschäftigt sich mit der Verarbeitung von Klavierrollen.
+Dies dürfte primär in der besseren Verfügbarkeit, bedingt durch die hohe produzierte Stückzahl aber auch durch die spätere Produktionszeit und die damit besseren Chancen von heute noch funktionsfähigen Medien, begründet liegen.
+Aber auch die längere Laufzeit von Klavierrollen im Vergleich mit vorherigen Medienformaten und insbesondere die \textit{Player-Rolls} dürften für ein erhöhtes Forschungsinteresse gesorgt haben.
+
+Die ersten Überlegungen zur digitalisierung der Informationen auf Klavierrollen lassen sich in den 70er Jahren verorten, in den 90ern und frühen 2000ern existierten bereits eine Vielzahl von Systemen im weiteren Umfeld der digitalen Verarbeitung von Klavierrollen \autocite[]{colmenares_2011}.
+Allgemein lässt sich feststellen, dass die Projekte aus dieser Zeit überwiegend dem Enthusiasten Bereich zuzurechnen sind.
+Eines der ersten Projekte dieser Art war das \textit{Philips Ampico-Apple} System von Peter Stephens \parencite*[]{stephens} zum digitalisieren von Ampico Klavierrollen.
+Ein späteres Beispiel aus 1996 ist die Entwicklung eines Gerätes zum digitaliseren von Klavierrollen mehrerer Typen von Wayne Stahnke \parencite[]{stahnke_1996}.
+Als letztes Beispiel sei Spencer Chase \parencite*[]{chase_2003} genannt, der Ebenfalls Hardware zum erstellen von Digitalisaten von Klavierrollen erstellte, aber auch solche um die Digitalisate wieder auf tatsächlicher Hardware abspielen zu können.
+Ziel war es primär die Information auf den Klavierrollen zu konservieren und auf anderen Geräten wieder Abspielbar zu machen.
+Eine weitere größere Sammlung von digitalisierten von digitalisierten Klavierrollen auf der inzwischen nicht mehr verfügbaren Website der International Association of Mechanical Music Preservationalists (IAMMP)\footnote{\href{http://www.iammp.org/}{www.iammp.org}}
+
+Der Ursprung im Enthusiasten Bereich zeigt sich u.a. an der unzureichenden Dokumentation der Projekte.
+Häufig sind die Prozesse entweder gar nicht öffentlich zugänglich oder nur auf Mailinglisten oder (inzwischen häufig nicht mehr verfügbaren) privaten Websites dokumentiert.
+Die verwendete Software ist häufig proprietär und nur gegen Bezhalung verfügbar, so sie es heute überhaupt noch ist.
+Auch die verwendeten Dateiformate für die digitalisierung sind insbesondere bei den älteren Projekten nicht standardisiert und undokumentiert.
+Grade bei größeren Sammlungen wie der der IAMMP ist auch nicht immer nachvollziehbar von wem und mit welchen Methoden ein Digitalisat erstellt wurde.
+
+Diese Faktoren schränken eine wissenschaftliche Verwendung der Digitalisate und Digitalisierungsprozesse sehr stark ein.
+Diese Problematik wird auch von \textcite[]{zoltan_1994} angemerkt, einer der ersten wissenschaftlichen Publikationen zur digitalisierung von Klavierrollen.
+
+% YOU ARE HERE %
+
+
+
+
+Das Player Piano Projekt an der Stanford University (\textit{SUPRA}) wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der Bibliothek von Stanford Forscher:innen und anderen interessierten zugänglich zu machen \autocite*[]{shi_2019}.
+Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford von denen gut 1000 digitalisiert wurden \autocite*[]{broadwell_2022}.
 Das Projekt fokussierte sich dabei zunächst auf die digitalisierung von Notenrollen des Typs Welte T-100\footnote{Auch rote Welte Rollen genannt, da sie meist auf roten Papiert produziert wurden.}, die erste Form der reproduzierenden Notenrolle.
 
 Für die digitalisierung wurde zunächst ein Gerät konstruiert, dass es erlaubt hochauflösende\footnote{TIFF mit 300dpi Auflösung.} Bilder der Notenrollen zu erstellen.
 Um eine hochwertige Emulation der Originalrollen zu ermöglichen wurden zunächst einige Fehlerkorrekturen vorgenommen.
 Es wurde etwa eine Korrektur zur begradigung der Notenrollenscans eingesetzt um die, grade in den späteteren Teilen der Rollen, auftretenden Verzerrungen zu korrigieren.
-Weiterhin wurden Löcher die uncharacteristisch\footnote{Beispielsweise von Form oder Orientierung} und vermutlich auf Beschädigungen zurückzuführen sind herausgefiltert und schnell aufeinanderfolgende Löcher die als einzelne Note gespielt werden\footnote{Sogenannte \textit{Bridges}.} zusammengefasst \parencite*[519f]{shi_2019}.
+Weiterhin wurden Löcher die uncharacteristisch\footnote{Beispielsweise von Form oder Orientierung} und vermutlich auf Beschädigungen zurückzuführen sind herausgefiltert und schnell aufeinanderfolgende Löcher die als einzelne Note gespielt werden\footnote{Sogenannte \textit{Bridges}.} zusammengefasst \autocite*[519f]{shi_2019}.
 
-Um nun eine möglichst originalgetreue emulation eines Originalabspielgerätes zu erreichen untersuchten \textcite[521f]{shi_2019} die Funktion der vorhandenen Steuerungsfuntktionen auf den Welte Rollen mithilfe von Originaldokumenten, Testrollen und weiteren Quellen.
+Um nun eine möglichst originalgetreue emulation eines Originalabspielgerätes zu erreichen untersuchten \autocite[521f]{shi_2019} die Funktion der vorhandenen Steuerungsfuntktionen auf den Welte Rollen mithilfe von Originaldokumenten, Testrollen und weiteren Quellen.
 Die so decodierten Informationen wendeten sie dann bei der Erstellung der Midi Dateien und in folge für die daraus generierten Audio Repräsentationen an.
 Es wurden schlussendlich noch einige kleinere Korrekturen angewendet wie eine korrektur der bauartbedingte Tempsteigerung die beim abspielen der Originalrollen typisch war bevor die erzeugten Midis durch ein generisches Software-Piano gerendert wurden.
 
