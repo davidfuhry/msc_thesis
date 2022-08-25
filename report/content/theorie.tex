@@ -1,8 +1,24 @@
 \section{Forschungsstand}
 
-Die überwältigende Mehrheit der Arbeiten zur Digitalisierung von Historischen Toninformationsträgern beschäftigt sich mit der Verarbeitung von Klavierrollen.
-Dies dürfte primär in der besseren Verfügbarkeit, bedingt durch die hohe produzierte Stückzahl aber auch durch die spätere Produktionszeit und die damit besseren Chancen von heute noch funktionsfähigen Medien, begründet liegen.
-Aber auch die längere Laufzeit von Klavierrollen im Vergleich mit vorherigen Medienformaten und insbesondere die \textit{Player-Rolls} dürften für ein erhöhtes Forschungsinteresse gesorgt haben.
+Das bisherige Forschungsinteresse zur digtialisierung von historischen Toninformationsträgern ist stark auf die Verarbeitung von Klavierrollen beschränkt.
+Dies dürfte vor allem auf die Existenz der im vorigen Abschnitt erwähnten eingespielten Klavierrollen zurückzuführen sein, die es für die Plattenbasierten Medien nicht gab.
+Aber auch die bessere Verfügbarkeit, bedingt durch die hohe produzierte Stückzahl aber auch durch die spätere Produktionszeit und die damit besseren Chancen von heute noch funktionsfähigen Medien, kann ein Faktor sein der zu dieser Diskrepanz am Forschungsinteresse beiträgt.
+
+Die einzigen bekannten Arbeiten zur Digitalisierung von Lochplatten sind im Rahmen des \textit{SISAR}-Projekts der Italian Mechanical Music Association (AMMI) entstanden \parencite[]{pedrazzini_2013,perretti_2014}.
+Im Rahmen dieses Projekts sollen verschieden Typen von historischen Toninformationsträgern digitalisiert werden.
+Dabei arbeiten die Autor:innen auch mit Pappplatten des Types Ariston ein, für die eine Anwendung entwickelt wurde mit der Bilder dieser runden Medien in eine viereckige, einer Notenrollen ähnliche Darstellung transformiert werden können um sie später mit Software zur Digitalisierung von Notenrollen bearbeiten zu können \parencite[]{perretti_2014}.
+Eine solche Anwendung wurde ebenfalls entwickelt \parencite[]{conversion}.
+Die Umwandlung erfolgt dabei mittels hinterlegten Informationen zum Medienformat und den vorhandenen Spuren, das Ausrichten der Spuren auf dem Scan erfolgt manuell.
+
+Leider sind die eingesetzten Methoden praktisch undokumentiert, so dass sich weder zur Qualität und Funktionalität der Digitalisate noch zum aktuellen Entwicklungsstand der Verfahren keine sinnvolle Aussage treffen lässt.
+Auch ist die eingesetzte Software weder als Quellcode noch in binärer Form öffentlich verfügbar, so dass auch hier kein Schluss auf die Güte des Vorgehens möglich ist.
+
+Dennoch können diese Arbeiten zeigen, dass die digtialisierung von Lochplatten und Klavierrollen viele Ähnlichkeiten aufweisen.
+Dazu gehören zum einen die Ähnliche Art der Informationskodierung (durch Löcher), aber auch viele mechanische Eigenschaften der Abspielgeräte.
+Beide Formate wurden fast ausschließtlich durch pneumatischen Mechanismen von den Abspielgeräten ausgelesen, so dass sich auch in der Art der Informationsdekodierung viele Ähnlichkeiten ergeben.
+Dazu zählt z.B. das sehr eng beiananderliegende Löcher von der Mechanik als ein einzelnes Loch interpretiert werden.
+Dies legt nahe die digtialisierung der beiden Medienformate als gemeinsamen Themenbereicht zu betrachten.
+Die verhältnissmäßig deutlich größere, wenn auch allgemein eher spärliche, Menge an vorhandener Literatur zur Digitalisierung von Klavierrollen kann also als relevant nicht nur für die Digitalisierungsverfahren selbiger sondern auch für die von Lochplatten betrachtet werden.
 
 Die ersten Überlegungen zur digitalisierung der Informationen auf Klavierrollen lassen sich in den 70er Jahren verorten, in den 90ern und frühen 2000ern existierten bereits eine Vielzahl von Systemen im weiteren Umfeld der digitalen Verarbeitung von Klavierrollen \autocite[]{colmenares_2011}.
 Allgemein lässt sich feststellen, dass die Projekte aus dieser Zeit überwiegend dem Enthusiasten Bereich zuzurechnen sind.
@@ -17,25 +33,41 @@ Häufig sind die Prozesse entweder gar nicht öffentlich zugänglich oder nur au
 Die verwendete Software ist häufig proprietär und nur gegen Bezhalung verfügbar, so sie es heute überhaupt noch ist.
 Auch die verwendeten Dateiformate für die digitalisierung sind insbesondere bei den älteren Projekten nicht standardisiert und undokumentiert.
 Grade bei größeren Sammlungen wie der der IAMMP ist auch nicht immer nachvollziehbar von wem und mit welchen Methoden ein Digitalisat erstellt wurde.
-
 Diese Faktoren schränken eine wissenschaftliche Verwendung der Digitalisate und Digitalisierungsprozesse sehr stark ein.
-Diese Problematik wird auch von \textcite[]{zoltan_1994} angemerkt, einer der ersten wissenschaftlichen Publikationen zur digitalisierung von Klavierrollen.
 
-% YOU ARE HERE %
+Einen frühen Beitrag zur wissenschaftlichen Bearbeitung von historischen  Klavierrollen liefern \textcite[]{zoltan_1994}.
+Die Autoren beschreiben die Digtialisierung von Klavierrollen des Types Welte-Mignon.
+Über einen Rollenscanner wurden Bilder der Klavierrollen erzeugt aus welchen nach der weiteren Verarbeitung zwei Midi Dateien generiert werden.
+Eine Midi Datei enthält dabei nur die Informationen zu Tonhöhe und Länge, die andere schließt auch die in der Rolle mit kodierten Informationen zu Dynamik ein.
+Die Autoren konnten, bedingt durch die Verfügbare Technologie, einige Aspekte der digtialisierung nur bedingt bzw. durch Manuelle Korrekturen durchführen, so etwa das Erkennen von Expression-Curves oder Risse im Papier.
+Sie nutzten allerdings auch Techniken die sich in späteren Arbeiten wiederfinden, so wird etwa der Rollenrande dynamisch über den Verlauf der Rolle verfolgt um durch Deformationen des Papiers entstandene Ungenauigkeiten auszugleichen.
+
+Eine spätere Arbeit die sich spezifisch mit den Herausforderungen der Erzeugung von MIDI Dateien aus bereits digitalisierten, in Matrizenform vorliegenden Klavierrollen beschäftigt findet sich bei \textcite[]{colmenares_2011}.
+Die Autor:innen nutzen dabei Digitalisate die mit der Technologie von \textcite[]{stahnke_1996} erzeugt wurden.
+Im Gegensatz zu dessen proprietärer Digitalisierungstechnologie setzen die Autor:innen aber einen Fokus darauf den Digitalisierungsprozess ausführlich zu dokumentieren.
+
+Sie gehen dabei sowohl allgemein auf das Dekodierverfahren für Klavierrollen in Matrizenform ein als auch insbesondere auf die Umsetzung der Kontrollspuren ins Midi Format.
+Ein wichtiger Validierungsschritt den sie dabei unternehmen ist der Vergleich der aus der erzeugten Midi Repräsentation der Rolle generierten Audiodaten mit den von \textcite[]{stahnke_1996} selbst erzeugten und vertriebenen Audio-CDs der gleichen Werke \parencite[70ff]{colmenares_2011}.
+Dabei können sie die Genauigkeit ihres Verfahrens demonstrieren, das bis auf kleinere Abweichungen authentische Ergebnisse produzierte.
+Problematisch scheint aber, dass diese Valdidierungsform von der Genauigkeit der ursprünglich von \textcite[]{stahnke_1996} mittels eines prorietären, nicht öffentlich dokumentierten Prozesses durchgeführten Digitalisierung abhängig ist.
 
 
 
-
-Das Player Piano Projekt an der Stanford University (\textit{SUPRA}) wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der Bibliothek von Stanford Forscher:innen und anderen interessierten zugänglich zu machen \autocite*[]{shi_2019}.
-Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford von denen gut 1000 digitalisiert wurden \autocite*[]{broadwell_2022}.
+Das Player Piano Projekt an der Stanford University (\textit{SUPRA}) wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der Bibliothek von Stanford Forscher:innen und anderen interessierten zugänglich zu machen \autocite[]{shi_2019}.
+Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford von denen gut 1000 digitalisiert wurden \autocite[]{broadwell_2022}.
 Das Projekt fokussierte sich dabei zunächst auf die digitalisierung von Notenrollen des Typs Welte T-100\footnote{Auch rote Welte Rollen genannt, da sie meist auf roten Papiert produziert wurden.}, die erste Form der reproduzierenden Notenrolle.
 
 Für die digitalisierung wurde zunächst ein Gerät konstruiert, dass es erlaubt hochauflösende\footnote{TIFF mit 300dpi Auflösung.} Bilder der Notenrollen zu erstellen.
 Um eine hochwertige Emulation der Originalrollen zu ermöglichen wurden zunächst einige Fehlerkorrekturen vorgenommen.
 Es wurde etwa eine Korrektur zur begradigung der Notenrollenscans eingesetzt um die, grade in den späteteren Teilen der Rollen, auftretenden Verzerrungen zu korrigieren.
-Weiterhin wurden Löcher die uncharacteristisch\footnote{Beispielsweise von Form oder Orientierung} und vermutlich auf Beschädigungen zurückzuführen sind herausgefiltert und schnell aufeinanderfolgende Löcher die als einzelne Note gespielt werden\footnote{Sogenannte \textit{Bridges}.} zusammengefasst \autocite*[519f]{shi_2019}.
+Weiterhin wurden Löcher die uncharacteristisch\footnote{Beispielsweise von Form oder Orientierung} und vermutlich auf Beschädigungen zurückzuführen sind herausgefiltert und schnell aufeinanderfolgende Löcher die als einzelne Note gespielt werden\footnote{Sogenannte \textit{Bridges}.} zusammengefasst \autocite[519f]{shi_2019}.
 
 Um nun eine möglichst originalgetreue emulation eines Originalabspielgerätes zu erreichen untersuchten \autocite[521f]{shi_2019} die Funktion der vorhandenen Steuerungsfuntktionen auf den Welte Rollen mithilfe von Originaldokumenten, Testrollen und weiteren Quellen.
 Die so decodierten Informationen wendeten sie dann bei der Erstellung der Midi Dateien und in folge für die daraus generierten Audio Repräsentationen an.
-Es wurden schlussendlich noch einige kleinere Korrekturen angewendet wie eine korrektur der bauartbedingte Tempsteigerung die beim abspielen der Originalrollen typisch war bevor die erzeugten Midis durch ein generisches Software-Piano gerendert wurden.
+Es wurden schlussendlich noch einige kleinere Korrekturen angewendet wie eine korrektur der bauartbedingte Temp0steigerung die beim abspielen der Originalrollen typisch war bevor die erzeugten Midis durch ein generisches Software-Piano gerendert wurden.
+
+Aktuell arbeiten die Autoren unter anderem am \textit{Pianolatron}, einer webbasierten Softwarelösung die Notenrollen darstellen und interaktiv abspielen kann \parencite[]{vijoy_2022}.
+Die Software erlaubt es dabei nicht nur eine Notenrolle aus einem Bestand von gut 1000 Rollen abzuspielene, es können dabei auch Parameter wie die Abspielgewschwindigkeit und die Lautstärke angepasst werden.
+Auch können verschiedene Parameter der Emulation der mechanischen Komponenten angepasst werden welche durch die Verluste der Originalgeräte nicht notwendigerweise korrekt abgebildet werden können.
+Mit der zusätzlichen Möglichkeit interaktiv bestimmte Noten auf dem Bild der Rolle selbst anzuzeigen bildet das \textit{Pianolatron} eine umfangreiche, schon jetzt sehr vielversprechende Abspiel- und Visualsierungsumgebung für Notenrollen. 
 
