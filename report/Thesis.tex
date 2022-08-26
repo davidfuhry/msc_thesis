@@ -17,7 +17,7 @@
 \usepackage{multirow}
 \usepackage{tabularx}
 \sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
-\usepackage[german, ngerman, english]{babel}
+\usepackage[ngerman]{babel}
 \usepackage[
     backend=biber,
     style=apa,
@@ -30,7 +30,7 @@
 \addbibresource{thesis-software.bib}
 \addbibresource{thesis-online.bib}
 
-
+\newcommand{\code}[1]{\texttt{#1}}
 
 \selectlanguage{ngerman}
 
@@ -67,7 +67,7 @@
 
         \vspace{1cm}
 
-        Erstbegutachter: Jun.-Prof. Dr. Phil. Manuel Burghardt \\
+        Erstbegutachter: Prof. Dr. Phil. Manuel Burghardt \\
         Zweitbegutachter: N.N.
         
         \vspace{0.2cm}
@@ -92,6 +92,10 @@
 \pagenumbering{arabic}
 
 \input{content/introduction}
+
+% Historische Toninformationsträger
+
+\input{content/historischetit}
 
 % Theorie
 
