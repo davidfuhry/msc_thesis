@@ -1,2 +1,169 @@
-\section{Vorgehen}
+\FloatBarrier
 
+\section{Softwarebasierte Generierung von MIDI Dateien aus Bilddaten}
+
+\subsection{Das \code{musicbox} Paket}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Übersicht über den Umwandlugnsprozess mit der \code{musicbox} Software}
+    \label{softwareworkflow}
+\end{figure*}
+
+Teil der Ziele des DISKOS-Projektes ist es eine einheitliche Softwarelösung für die Umwandlung aller als Bilddaten vorliegenden Toninformationsträger im Bestand des Musikinstrumentenmuseums der Universität Leipzig zu erstellen.
+Zu diesem Zweck wurde die dieser Arbeit zugrundelegende Software in Form des \code{musicbox} Python \parencite[]{van1995python} Pakets implementiert.
+Es findet dabei der gesamte Umwandlungsprozess vom Verarbeiten der Bilddaten bis zur Erstellung der MIDI Datei in der Software statt, so dass keine externen externen Vor- oder Nachbearbeitungsschritte notwendig sind.
+
+Um die für die Verarbeitung der diversen unterschiedlichen Formate von Toninformationsträgern notwendige Flexbilität zu ermöglichen und gleichzeitig eine möglichst hohe Wiederverwendbarkeit einzelner Komponenten zu ermöglichen ist die Software modular aufgebaut und durch Konfigurationsdateien flexibel anpassbar.
+Mit diesem Ansatz soll in der Zukunft für die Verarbeitung eines neuen Formats von Toninformationsträgern idealerweise das eintragen der Verarbeitungsschritte und der notwendigen Parameter in die Konfigurationsdatei ausreichen.
+
+Die Informationen wie einzelne Formate zu verarbeiten sind ist dabei in der \code{config.yaml} Datei abgelegt.
+In dieser wird für ein zu verarbeitendes Format zunächst eine Pipeline bestehend aus einzelnen Verarbeitungsschritten definiert.
+Die verfügbaren Verarbeitungsschritte sind innerhalb des Paketes in mehreren Python Dateien nach dem Teilgebiet des Umwandlungsprozesses zu dem sie gehören sortiert.
+Der Name des Verarbeitungsschrittes setzt sich dabei aus Datei und Methodennamen zusammen, z.B. \code{preprocessing.binarization}.
+Neben der Verarbeitungspipeline werden die für den Umwandlugnsprozess benötigten Parameter in der Konfigurationsdatei abgelegt.
+Diese beinhalten Metadaten zum zu Verarbeitenden Medientyp wie etwa die Anzahl und Belegung der vorhandenen Spuren, aber auch technische Parameter wie den Threshold für die Bildbinarisierung.
+
+Die Software ist auf einfache Erweiterbarkeit ausgelegt.
+Um einen neuen Verarbeitungsschritt hinzuzufügen genügt es diesen als Methode in der entsprechenden Datei zu definieren und Informationen zu den benötigten Parametern sowie den Daten die aus anderen Verarbeitungsschritten benötigt bzw. für diese bereitgestellt werden in die interne Konfiguration einzutragen.
+Der Verarbeitungsschritt wird dann wenn er in einer Pipeline genutzt wird automatisch zur Laufzeit aufgerufen.
+
+Der Umwandlungsprozess selbst kann entweder über die Einbindung des Paketes in ein eigenes Python Skript oder über ein bereitgestelltes Wrapper-Skript angestoßen werden.
+Die Software prüft vor dem ausführen der konfigurierten Pipeline mittels interner Konfigurationsdaten zunächst ob alle für die definierten Schritte notwendigen Parameter vorhanden und ob die Schritte in der gegebenen Reihenfolge ausführbar sind.
+Ist dies der Fall werden alle Schritte in der gegebenen Reihenfolge ausgeführt.
+
+In Abbildung \ref*{softwareworkflow} ist eine grobe Übersicht über den allgemeinen Umwandlungsprozess zu sehen.
+Im Folgenden wird dieser Umwandlungsprozess anhand der voll funktionalen Pipeline für die Verarbeitung von Pappplatten sowie der sich noch im Prototyp Stadium befindlichen Pipeline für Notenrollen näher erläutert.
+
+\subsection{Digitalisierung von Pappplatten}
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Pappplatten normales photo und das wo wir benutzen}
+    \label{pappplattenphotos}
+\end{figure*}
+
+Vor dem Anfertigen der Photographien der Pappplatten durch einen Musikwissenschaftler werden die Medien gereinigt, auf Schäden untersucht und diese, so vorhanden, sowie auf der Platte selbst vorhandene Metainformationen dokumentiert.
+Die Platten werden anschließend in einer speziell für diesen Zweck konstruierten Aufhängung platziert in welcher sie mit Hintergrundbeleuchtung photographiert werden.
+Abbildung \ref{pappplattenphotos} zeigt beispielhaft das Bild einer Pappplatte der Marke Ariston, sowohl als Foto zur Dokumentation sowie als Bild für die weitere digitale Verarbeitung.
+Die Bilder die für die softwarebasierte Verarbeitung vorgesehen sind unterscheiden sich dabei zum einen durch die Ausrichtung des Plattenanfangs mit Startmarkierung auf 0 Grad, was es unnötig macht diesen Softwareseitig zu identifizieren.
+Zum anderen werden diese Bilder mit veränderten Belichtungseinstellungen aufgenommen um einen höheren Kontrast zwischen den Löchern auf der Platte und der Platte selbst zu erreichen.\footnote{Während der anfänglichen Entwicklung dieser Software wurden für die Verarbeitung Bilder ohne diese Einstellungen oder Hintergrundbeleuchtung erfolgreich verwendet. Es ist davon auszugehen, dass sich solche Bilder mit minimalen Anpassungen verwenden lassen.}
+
+Der Software liest die vorliegenden Bilddaten grundsätzlich als Graustufenbild ein und wendet zunächst eine einfach Threshold basierte Binarisierung an.
+Für diesen sowie die meisten weiteren Bildbasierten Verarbeitungsschritte wird die \textit{OpenCV} \parencite[]{opencv_library} Bibliothek sowie Numpy \parencite[]{harris2020array} genutzt.
+Der genutzte untere Threshold für die Binarisierung (60) wurde experimentell ermittelt um eine möglichst optimale Erhaltung der Strukturen der Platten bei gleichzeitiger Minimierung von Artefakten zu gewährleisten.
+
+Im nächsten Schritt wird das Bild mit einem Algorithmus zur Kantenerkennung bearbeitet.
+In früheren Versionen der Software wurde hierfür der Canny Algorithmus zur Kantenerkennung eingesetzt \parencite[]{canny_1986}.
+Dies führte mitunter zu Problemen, da die Abstände zwischen einzelnen Löchern auf den Pappplatten in extremfällen nur einzelne Pixel betragen und die so erzeugten Kanten in solchen Fällen kollidierten.
+Um dies zu verhindern wird nun ein Morphologischer Kantenerkennungsalgorithmus eingesetzt der zunächst mit einem 3x3 Kernel eine Erosin des Bildes durchführt und anschließend aus der Differenz des Originalbildes und der Erosion die Kanten bildet.
+Dieses Verfahren stellt sicher, dass die Kanten immer auf der Innenseite der Löcher in der Platte liegen.
+Einige Platten weisen Einrisse zwischen einzelnen Löchern auf die dazu führen, dass diese Löcher als eine Komponente erkannt werden.
+Da dies allerdings auch der Fall wäre wenn eine Platte mit einer solcher beschädigung auf einem Originalabspielgerät abgespielt würde, wurde hier die bewusste Entscheidung getroffen dies nicht zu korrigieren um eine der tatsächlichen Platte möglichst gut entsprechende Repräsentation zu schaffen. 
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Kantenerkennung, Labeling, Spurenzuordnung}
+    \label{pappplattenphotos}
+\end{figure*}
+
+Um das so nun vorliegende Bild der Kanten der Platte weiter zu Zerlegen und Komponenten wie die einzelnen Notenlöcher identifizieren zu können wird im weiteren ein Algorithmus zum finden von 2-verbundenen Komponenten aus Scikit-Image \parencite[]{scikit-image} eingesetzt.
+Die so gefundenen Komponenten werden für die weitere Verarbeitung jeweils ein Array mit den Koordinaten der zugehörigen Pixel umgewandelt um Berechnungen von Distanzen etc. zu vereinfachen.
+Aus diesen Komponenten wird die äußere Kante der Platte identifiziert (die größte zusammenhängende Komponente) sowie rechnerisch mithilfe von in der Konfiguration hinterlegten Messungen die innere Grenze des mit Tonspuren belegten Bereichs bestimmt.
+Es werden alle gefundenen Komponenten die innerhalb dieser inneren Begrenzung oder außerhalb des äußeren Plattenrandes liegen herausgefiltert da diese keine Tonlöcher sein können und somit für die weitere Verarbeitung uninsteressant sind.
+
+Im weiteren wird der Mittelpunkt der Pappplatte bestimmt.
+Da die Platten beim Photographieren an dem sich dort befindlichen Loch aufgehängt werden, ist dieser auf den Bildern nicht identifizierbar.
+Um den Mittelpunk zu bestimmen wird deshalb ein rechnerisches Verfahren angewendet.
+Es wird mittels des Algorithmus von \textcite[]{halir1998numerically} eine Elipse auf die Punkte des äußeren Plattenrandes gefittet und anschließend deren Mittelpunkt bestimmt.
+Dieses Verfahren liefert grundsätzlich sehr akkurate Ergebnisse, hat jedoch bei einzelnen Platten die Verformungen aufweisen Probleme.
+Dort wird zwar der korrekte Mittelpunkt des äußeren Plattenrandes identifiziert, dieser ist aber nicht der Mittelpunkt der Tonspuren auf der Platte.
+In diesen Fällen ist aktuell eine manuelle korrektur des gefundenen Mittelpunkts nötig.
+
+Anschließend müssen die einzelnen erkannten Löcher den jeweiligen Spuren zugeordnet werden um damit in Folge die mit ihnen verbundene Tonhöhe zu identifizieren.
+Dafür wird zunächst die Distanz (vom Zentroid ausgehend) jeder Komponente zum äußeren Rand der Platte sowie zum Mittelpunkt bestimmt.
+Um möglichen Verformungen die die Platte aufweisen können entegegen zu wirken wird daraus jeweils die relative Distanz der Komponente zwischen Zentrum und Plattenrand bestimmt.
+Anhand dieser Distanzen werden die Komponenten in die einzelnen Spuren gruppiert, wobei das Mean Shift Verfahren \parencite[]{meanshift} in der Implementierung in Scikit-Learn \parencite[]{scikit-learn} eingesetzt wird.
+Dieses Verfahren wurde gewählt, da es gegenüber den meisten Algorithmen die spezifisch für das Gruppieren von eindimensionalen Daten entwickelt wurde den Vorteil bietet kein a priori Wissen über die Anzahl der Cluster zu benötigen.
+Da nicht notwendigerweise alle Spuren die ein Format bietet bei jeder Platte des Formats genutzt werden ist nur die obere Schranke der Zahl der Cluster bekannt, nicht aber die genaue Anzahl.
+
+Dies bedingt auch die Zuordnung der gefundenen Spuren zu den Spuren auf der Platte.
+Um für das vorhandensein leerer Spuren zwischen den gefundenen Spuren zu kompensieren wird die durchschnittliche Distanz der gefundenen Spuren berechnet und jeweils zwischen die Spuren mit der höchsten Distanz eine leere Spur eingefügt.
+Dies wird wiederholt bis die Zahl der vorhandenen Spuren der der in der Konfiguration hinterlegten enstpricht.
+Damit können die gefundenen Spuren und damit die Löcher auf diesen den Spuren auf dem Format und damit ihrer Tonhöhe zugeordnet werden.
+
+Um die nun noch fehlenden Informationen zu Tonlänge und Timing zu finden werden für jedes Loch über das minimale umschließende Rechteck Anfang und Ende bestimmt.
+Für diese beiden Punkte kann im weiteren der Winkel zwischen ihnen und dem Rollenanfang berechnet werden. % Abbildung?
+Der Winkel zum Anfang bildet dann den Zeitpunkt zu dem die Note gespielt wird, die Differenz der beiden Winkel die Länge die sie klingt.
+Es ist anzumerken, dass die so erzeugten Angaben zu Timing und Tonlänge in Grad vorliegen und nicht in Schlägen wie sie in Midi Dateien kodiert sind.
+Während die Software Methoden anbietet diese Angaben um einen festen Faktor zu skalieren ist eine genaue Umwandlung nicht zuletzt dadurch erschwert, dass es sich bei den Originalabspielgeräten um handbetriebene Automaten handelte.
+Das Tempo war damit Variabel und die genaue Zahl der Takte und Schläge auf den Platten variierte.
+Eine auch nur annähernd genaue Umwandlung wäre nur mit einer Takterkennung möglich die aktuell nicht zum Umfang der Software gehört.
+
+
+Mit den nun vorhandenen Informationen wird abschließend mittels der MIDIUtil Bibliothek \parencite[]{midiutil} eine Midi Datei erstellt die die auf dem Toninformationsträger abgelegten Informationen wiedergibt.
+Dabei wird eine Mididatei mit einer einzelnen Spur erzeugt.
+Diese Dateien können anschließend beliebig weiterverwendet werden.
+Eine Überführung in eine Auralisierung in Form einer Audiodatei kann entweder über generische Softwareinstrumente erfolgen oder über die sich ebenfalls am Musikinstrumentenmuseum in Entwickelten befindliche \code{midiAuralizer} \parencite[]{midiauralizer} Software die es ermöglicht die Dateien mittels im Rahmen des DISKOS Projektes aufgenommenen Tonvorräten der historischen Instrumente zu Audiodateien umzuwandeln.
+
+Das hier vorgestellte Verfahren kann in dieser Form für die Umwandlung von Pappplatten des Typs Ariston sowie solcher für einen mechanischen Klaviervorsteller angewendet werden, es müssen lediglich die entsprechenden Parameter in der Konfiguration an das entsprechende Format angepasst werden bzw. das entsprechende Preset ausgewählt werden. 
+
+\subsection{Digitalisierung von Klavierrollen}
+
+Während das Umwandlungsverfahren für Pappplatten als voll funktionsfähig angesehen werden kann, befindet sich die aktuelle Methodik für die Umwandlung von Klavierrollen noch in einer Prototyp Phase.
+Sie ist aktuell nur mit einem Format von Klavierrollen (Hupfeld Phonola Solodant) getestet, die auf den Rollen vorhandenen Steuerspuren werden zwar korrekt ausgelesen aber bei der Generierung der MIDI Daten nicht beachtet und z.T. auf den Rollen abgedruckte Dynamiklinien werden nicht ausgelesen.
+Dennoch kann ein Blick auf das Verfahren in seinem aktuellen Zustand nicht nur in Hinblick auf die grundlegend Funktionsfähige digitalisierungstechnik von interesse sein, es zeigt auch die Vorteile der modularen Digitaliserungsanwendung.
+Während viele Komponenten spezifisch für die Digitalisierung von Klavierrollen erstellt wurden konnte ein guter Teil der Komponenten aus der Umwandlung von plattenbasierten Medien übernommen werden.
+
+Die währen des vorangegangenen TASTEN-Projekts in Zusammenarbeit mit einem externen Dienstleister erstellten vollständigen Scans von Notenrollen liegen grundsätzlich als Bilder mit einer Auflösung von 300 DPI vor und bilden die gesamte Notenrolle inklusive Anfang und Ende ab.
+Diese Scans wurden im Gegensatz zu denen der im Rahmen des DISKOS Projektes erzeugten Aufnahmen vor schwarzem Hintergrund ohne Hintergrundbeleuchtung erstellt.
+Aus technischen Gründen Umfassen die Scans je nach Rollenlänge auch einen längeren leeren Bereich nach dem Ende der Rolle.
+
+Nach der Binarisierung der Bilder die mit der gleichen Komponente wie die der Pappplatten erfolgt wird daher zunächst die Rolle auf die Länge des tatsächlich mit Informationen kodierten Teils der Rolle gekürzt.
+Um diesen zu finden wird über die gesamte Länge des Scans für jede Zeile der relative Anteil der Pixel mit Inhalt errechnet.
+Es wird anschließend bestimmt in welchen Zeilen der Anteil der gefüllten Pixel über 80\% beträgt und aus diesen die längste zusammenhängende Folge von Zeilen ausgewählt.
+Diese Methode schließt je nach gewähltem Anteil der gefüllten Pixel einen gewissen Teil von Rollenanfang und -ende mit ein, der sich jedoch in der Praxis als unproblematisch erwiesen hat.
+
+Die folgenden Schritte des findens von zusammenhängenden Komponenten sowie das Umwandeln dieser in Koordinatenlisten geschehen nach dem gleichen Verfahren die für Pappplatten genutzt wurden.
+Um die Ränder der Rolle zu identifizieren werden über die gesamte Länge der Rolle 100 zufällige Zeilen ausgewählt und die in diesen Zeilen liegenden verbundenen Komponenten gezählt.
+Die beiden Komponenten die in den meisten, praktisch sogar allen, Zeilen vorkommen sind die Kanten an den Rändern der Rolle.
+
+Aufgrund der unterschiedlichen Aufnahmetechnik der Rollen gegenüber der später aufgenommenen Platten weisen sie nach der Binarisierung und Kantenerkennung deutlich mehr Artefakte auf.
+Diese werden im nächsten Schritt wieder herausgefiltert.
+Dies geschieht zum einen indem für jede verbundene Komponente ermittelt wird ob sie aus mehr oder weniger Pixeln besteht als der Mittelwert aller verbundenen Komponenten, mit ausnehme der im vorherigen Schritt ermittelten Rollenränder.
+Alle komponenten die kleiner als die durchschnittliche Komponente sind werden dabei entfernt.
+Alle verbleibenden Komponenten werden noch einmal über ihre Form gefiltert.
+Dabei wird geprüft ob das gerundete Verhältniss von Höhe zu Breite der Komponente im Intervall $[1,2]$ liegt.
+Während ein rundes Loch üblicherweise etwa genau so breit wie hoch sein sollte kann es bei sehr eng platzierten Löchern dazu kommen, dass diese als eine Komponenten erkannt werden, weshalb solche Komponenten die etwa doppelt so hoch wie breit sind nicht entfernt werden.
+
+Anschließend werden die Informationen zu den auf der Rolle kodierten Noten extrahiert.
+Zu diesem Zweck wurde im Rahmen des DISKOS-Projekts von Musikwissenschaftlier:innen der Gleitbock des Abspielgerätes\footnote{Die Komponente auf der die Notenrolle aufliegt und an der das Vakuum anliegt das für die Tonerzeugung nötig ist.} vermessen und die genauen Maße sowie der assoziierte Ton für jede Spur dokumentiert.
+Mit diesen Informationen kann durch einfaches Berechnen der relativen Distanzen zwischen jedem Loch und den Rollenrändern die zugehörige Spur für jede Komponente ermittelt werden.
+Da Notenrollen sich mit der langen Lagerzeit insbesondere in den späteren Rolle verziehen können, wird die Rolle für diese Berechnung in Segmente zu jeweils mindestens 1000 Pixeln unterteilt und die Positionsbestimmung für jedes Segment seperat vorgenommen.
+Die Segmente werden dabei so gewählt, dass keine verbundene Komponente geteilt wird.
+Bei Bedarf können diese Segmente auch kleiner gewählt werden, die gewählte Größe hat sich jedoch bis jetzt als Ausreichend erwiesen um zumindest leichte Deformationen der Rolle ausgleichen zu können und sollte dabei noch groß genug sein um nicht durch einen kürzen Einriss der Rolle oder ähnliche beschädigungen negativ beinflusst zu werden.
+Die Tonlänge wird durch die Position des höchsten bzw. tiefsten Punkts einer Komponente ermittelt.
+
+Im Gegensatz zu den Abspielgeräten für Pappplatten wurden Reproduktionsklaviere meist von elektrischen Motoren betrieben und erlaubten so eine Präzise Einstellung der Abspielgeschwindigkeit.
+Die vorgesehene Abspielgeschwindigkeit war bei einigen Formaten auf dem Rollenanfang in der Einheit feet per 10 Minutes vermerkt \parencite[63]{colmenares_2011}.
+Da die Scanauflösung bekannt ist kann der Umrechnungsfaktor Pixel per Second ($pps$) aus den feet per minute ($fpm$) wie in Gleichung \ref{eq:1} errechnet werden.
+Werden die vorher ermittelten Timings und Tonlängen nun mit diesem Faktor skaliert liegen die Tonlängen in Sekunden vor.
+Zeitangeben in MIDI Dateien werden allerdings grundsätzlich in Schlägen und nicht Sekunden gemacht\footnote{Alternativ ist es auch möglich die Zeitangaben in Ticks zu hinterlegen, diese stehen allerdings in einem direkten Verhältniss zu Schlägen.}, weshalb zusätzlich die Geschwindkeit der erzeugten Midi Datei auf 60 BPM festgelegt werden muss.
+Mittels dieser Skalierung werden Rollen für die Tempangaben existieren annährend im Originaltempo wiedergegeben.
+
+\begin{equation} \label{eq:1}
+    pps = \frac{fpm * 12 * 300}{60}
+\end{equation}
+
+Der letzte Verarbeitungsschritt vor dem erzeugen der MIDI Datei besteht darin, sehr eng zusammenliegende Noten zusammenzufassen.
+Aufgrund der mechanischen Eigenschaften der pneumatik der Originalabspielgeräte wurden Löcher die einen sehr kleinen Abstand zueinander hatten wie ein durchgehendes Loch abgespielt.
+Die praktische Grenze dieses Verhaltens ist nicht klar bekannt und wird potentiell zwischen Verschiedenen Typen von Geräten variieren, \textcite[7]{zoltan_1994} gibt sie mit 10-12 Wiederholungen die Sekunde an die noch als einzelne Töne interpretiert werden sollten, aktuell arbeitet die Pipeline mit einer maximalen Anzahl von 12 wiederholten Tönen.
+Alle Noten die so eng beieinanderliegen, dass es in einer Sekunde mehr als 12 wiederholungen geben würde werden zusammengefasst.
+Die genaue Höchstzahl ist über die Konfigurationsdatei anpassbar.
+
+Abschließend wird wie bei den Pappplatten eine Midi Datei generiert, da die Steuerungsspuren dabei aktuell noch nicht berücksichtigt werden ergibt sich keine Veränderung der Komponente zur Dateierzeugung.
+Das hier vorgestellte Verfahren wurde u.a. zur Umwandlung einer Skalenrolle\footnote{Eine Klavierrolle die aufsteigend alle Spuren mehrmals abspielt und ursprünglich zum testen und kalibrieren der Abspielgeräte genutzt wurde.} genutzt und konnte dort mit Erfolg genutzt werden.
+Während noch nicht alle nötigen Funktionen implementiert sind % Das gehört in den nächsten Teil.
