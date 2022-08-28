@@ -1,1 +1,71 @@
-\section{Umsetzung}
+\FloatBarrier
+\section{Analysetools und Visualisierungen}
+
+Neben der Umwandlung der historischen Toninformationsträger ist der Fokus des DISKOS Projektes die Nutzbarmachung der generierten Daten für die Musikwissenschaftliche Forschung.
+Zu diesem Zweck implementiert das \code{musicbox} Paket Funktionen zur Erstellung von Visualisierungen und Analysedaten aus den verarbeiteten Bildern.
+Diese Funktionen werden in Zusammenarbeit mit den am DISKOS Projekt beteildigten Musikwissenschaftler:innen entwickelt und orientieren sich an den Fragestellungen die diese an die verarbeiteten Toninformationsträger haben.
+Während im weiteren Verlauf des DISKOS Projektes insbesondere die Erkennung von Mustern und tiefergehende, inhaltliche Analysen vorgenommen werden sollen, fokussierte sich die bisherige Arbeit vor allem auf grundlegendere Methoden zur besseren Erschließung der vorliegenden Daten.
+
+Eine erste, grundlegende Frage die die Musikwissenschaftler:innen an die Medien hatten war das finden von Akkorden, also gemeinsam klingenden Tönen auf den Medien.
+Zu diesem Zweck sind mehrere Methoden implementiert.
+So lassen sich zum einen die klingenden Akkorde von den Basstönen\footnote{Die im Akkord meist den Grundton bilden.} aus untersuchen.
+Dabei werden alle Basstöne, der hierfür zu betrachtende Bereich ist frei konfigurierbar, ausgewählt und für jeden dieser Tönne alle gleichzeitig klingenden Töne ermittelt.
+Ein anderes herangehen untersucht die auf dem Medium vorhandenen Töne sequentiell und ermittelt für jeden Ton die gleichzeitig klingenden Töne.
+Beide Methoden lassen sich flexibel konfigurieren um beispielsweise zu ändern ob auch Töne mit eingeschlossen werden sollen die bereits vor der betrachteten Note angespielt wurden aber noch klingen während diese angespielt wird.
+Die Ergebnisse werden anschließend in Textform ausgegeben und sind für die Analyse verfügbar.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Keys go here}
+    \label{keys}
+\end{figure*}
+
+Insbesondere der letzte höhrbare Akkord ist dabei für die Musikwissenschaftliche betrachtung von interesse, da er meist Aufschlüsse über die Tonart des Stückes gibt.
+Für die Bestimmung der Tonart eines Stückes existieren einige algorithmische Ansätze, wie etwa das probabalistische Modell von \textcite[]{temperley_2002}.
+Die \code{musicbox} Software nutzt die implementierung dieses Ansatzes im Python Paket \code{music21} \parencite[]{music21} um die Tonart der Stücke auf den bearbeiteten Medien genauer zu bestimmen.
+In Abbildung \ref{keys} sind die ermittelten Tonarten für das gesamte vorhandene Konvolut von Platten des Typs Ariston zu sehen.
+Die dort sichtbare Dominanz von Stücken in A-Dur im Konvolut legt den Schluss nahe, dass das Format besonders für Stücke in dieser Tonart geeignet war.
+Ob dies in der Verfügbarkeit von Tönen im Format begründet liegt oder ob es sich um gesellschaftliche Gründe wie etwa eine besonders gute Resonanz der Konsumenten auf Stücke in dieser Tonart, eventuell auch spezifisch für solche eher kurzen Stücke für den Heimgebrauch, handelt ist dabei eine Frage für die Musikwissenschaftliche Forschung der im weiteren Verlauf der Forschung beantwortet werden muss.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Barcharts go here}
+    \label{barcharts}
+\end{figure*}
+
+Neben solchen analyseverfahren waren die Musikwissenschaftler:innen auch an graphischen Visualiserungen zur besseren Erschließung der Medien interessiert.
+Eine erste Frage war dabei die nach der Häufigkeit der einzelnen auf den Medien vorkommenden Tönen.
+Zu diesem Zweck wurde eine Funktion implementiert, die die Notenhäufigkeit über das gesamte Medium ermittelt und als Balkendiagramm ausgibt (siehe Abbildung \ref{barcharts}).
+Dabei werden Softwareseitig mehrere Diagramme generiert.
+Zur Diagrammerstellung kommt dabei die Python Bibliothek \code{matplotlib} \parencite[]{Hunter_2007} zum Einsatz.
+
+Zunächst wird die häufigkeit aller Einzeltöne dargestellt, wobei die X-Achse bewusst chromatisch angeordnet ist und auch Töne einschließt die auf dem spezifischen Medium bzw. sogar dem Medienformat insgesamt nicht vorhanden ist.
+Dies dient der einfacheren optischen Erkennung von Mustern.
+Ein ähnlicher Graph wird auch mit der Summe der Tonlänge pro Ton statt der Vorkommenshäufigkeit erstellt.
+Um eine generalisierte Betrachtung zuzulassen werden beide Diagramme auch in einer Form erzeugt in der die Töne auf ihre Grundtöne reduziert werden, was einen einfachere Betrachtung der Tonhäufigkeiten etwa um Rückschlüsse auf die vorkommende Tonart zu machen ermöglicht.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{graphics/placeholder.png}
+    \caption{Streamcharts}
+    \label{streamcharts}
+\end{figure*}
+
+Die beteildigten Musikwissenschaftler:innen waren weiterhin an einer Darstellung insteressiert, die auch die zeitliche Komponente der Medien mit einschließt.
+Hierfür wurde ein Streamgraph als Darstellungsform gewählt, der die häufigkeit der einzelnen Töne über den zeitlichen Verlauf des Mediums anzeigt.
+Für die in Abbildung \ref{streamcharts} zu sehende Visualisierung von Pappplatten wurde hierfür ein Binning in 12 Segmente vorgenommen, die Töne auf den Grundton reduziert und diese chromatisch sortiert.
+So wird es ermöglicht das Musikstück auf dem Medium auf Trends und veränderungen in seinem zeitlichen Verlauf zu untersuchen.
+
+Weiterhin haben sich die Streamgraph Darstellungen als eine praktische Möglichkeit erwiesen eine Art Fingerprint einzelner Medien zu erstellen.
+In Abbildung \ref{streamcharts} sind die Streamgraphen für 4 verschieden Pappplatten des Typs Ariston zu sehen.
+Die Medien enthalten 2 unterschiedliche Musikstücke zu denen im Bestand des Musikinstrumentenmuseums mehrere verschiedene Platten vorhanden sind.
+Die Platten (1) und (2) beide das Stück \textit{An der schönen blauen Donau} enthalten, sind Platten (3) und (4) Versionen des \textit{Schatz-Waltzers}.
+Während zwischen Platte (1) und (2) leichte Unterschiede ersichtlich sind, wie etwa die Häufigkeit der Töne B und Cis, sind sich die beiden Diagramme doch strukturell sehr ähnlich was Tonhäufigkeit und Entwicklung über den Verlauf der Platte angeht.
+Demgegenüber lassen Platten (3) und (4) zwar noch Ähnlichkeiten erkennen, etwa der Starke anstieg an vorhandnen Tönen im letzten Abschnitt der Platte, unterscheiden sich allerdings über den gesamten Verlauf verhältnissmäßig stark
+Dies legt den Schluss nahe, dass es sich bei Platten (1) und (2) um das gleichen Stückes handelt, während es sich bei den Platten (3) und (4) potentiell um unterschiedliche Arrangements des gleichen Stückes handelt.
+
+Neben den vorgestellten Analysemöglichkeiten erzeugt die Software während der Verarbeitung der Medien auch eine vielzahl von für Debuggingzwecke vorgesehenen Daten, wie etwa bildliche und textliche Daten zu gefundenen zusammenhängenden Komponenten und Noten.
+Auch diese Daten lassen sich potentiell nutzen um die verarbeiteten Medien zu analysieren, so lassen sich mit diesen beispielsweise statistische Betrachtungen der Notenlänge über verschiedene Medien realisieren.
+Durch die auf einfache Erweiterbarkeit ausgelegte Architektur der Anwendung lassen sich neue Analyseschritte problemlos umsetzten und die Methoden haben Zugriff nicht nur auf die finalen Daten nach der Umwandlung sondern auch auf alle Daten die in Zwischenschritten erzeugt wurden.
