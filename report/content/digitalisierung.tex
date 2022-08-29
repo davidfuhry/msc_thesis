@@ -36,6 +36,15 @@ Ist dies der Fall werden alle Schritte in der gegebenen Reihenfolge ausgeführt.
 In Abbildung \ref*{softwareworkflow} ist eine grobe Übersicht über den allgemeinen Umwandlungsprozess zu sehen.
 Im Folgenden wird dieser Umwandlungsprozess anhand der voll funktionalen Pipeline für die Verarbeitung von Pappplatten sowie der sich noch im Prototyp Stadium befindlichen Pipeline für Notenrollen näher erläutert.
 
+Ziel der Umwandlung ist die Erstellung einer Midi Datei.
+Eine solche Speichert keine Audioinformationen sondern, nicht unähnlich der hier betrachteten Toninformationsträger, Informationen wann welcher Ton für wie lange klingt.
+Midi Dateien können als etablierter Standard für die Speicherung solcher Informationen betrachtet werden und sind das Umwandlungsziel oder -zwischenziel bei allen aktuelleren Verfahren zum digitalisieren von Toninformationsträgern, siehe etwa \textcite[65]{colmenares_2011} oder \textcite[518]{shi_2019}.
+
+Für den grundlegenden Umwandlungsprozess von Lochplatten oder -rollen gilt es also die Informationen über Tonhöhe, -anfang und -länge zu Identifizieren.
+Dazu sind zunächst die einzelnen Löcher auf dem Medium zu identifizieren.
+Für jedes dieser Löcher müssen im folgenden der Start und Endpunkt der Lochung auf dem Medium identifiziert werden um Tonanfang und -länge zu bestimmen.
+Schlussendlich muss jedes Loch noch der entsprechenden Spur auf der Rolle zugeordnet werden um die Tonhöhe zu bestimmen.
+
 \subsection{Digitalisierung von Pappplatten}
 
 \begin{figure*}[t]
@@ -67,7 +76,7 @@ Da dies allerdings auch der Fall wäre wenn eine Platte mit einer solcher besch�
     \centering
     \includegraphics[width=\textwidth]{graphics/placeholder.png}
     \caption{Kantenerkennung, Labeling, Spurenzuordnung}
-    \label{pappplattenphotos}
+    \label{pipelinesteps}
 \end{figure*}
 
 Um das so nun vorliegende Bild der Kanten der Platte weiter zu Zerlegen und Komponenten wie die einzelnen Notenlöcher identifizieren zu können wird im weiteren ein Algorithmus zum finden von 2-verbundenen Komponenten aus Scikit-Image \parencite[]{scikit-image} eingesetzt.
