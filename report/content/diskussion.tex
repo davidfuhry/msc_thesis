@@ -1,41 +1,41 @@
 \section{Diskussion}
 
-Die in dieser Arbeit vorgestellte Software ermöglicht die automatische Erzeugung von Midi Dateien aus Scans historischer Toninformationsträger.
-Sie ist in der Lage als Lochplatten ausgeführte Toninformationsträger aus Pappe nur mit einem hochauflösenden Bild und einigen von Experten dokumentierten Metainformationen zum Format zu verarbeiten.
+Die in dieser Arbeit vorgestellte Software ermöglicht die automatisierte Erzeugung von Midi-Dateien aus Scans historischer Toninformationsträger.
+Sie ist in der Lage als Lochplatten ausgeführte Toninformationsträger ausgehend von einem hochauflösenden Bild und einigen von Experten dokumentierten Metainformationen zum Format zu verarbeiten.
 Die Funktionalität der Anwendung für diesen Zweck ist durch die praktisch vollständige Digitalisierung des Konvoluts von Lochplatten des Typs Ariston im Bestand des Musikinstrumentenmuseums demonstriert.
 
-Auch konnte demonstriert werden, wie die modularität der vorgestellten Software dazu beiträgt andere Formate historischer Toninformationsträger zu verarbeiten.
-Unter Wiederverwendung mehrerer Komponenten aus der Verarbeitung der Lochplatten wurde eine frühe Lösung zur digitalisierung von Notenrollen des Typs Phonola Solodant gezeigt.
-Die praktikabilität dieser Herangehensweise bestätigt sich durch die erfolgreiche Digitalisierung u.a. einer Skalenrolle dieses Formats. 
+Auch konnte gezeigt werden, wie die vorgestellte Software dazu genutzt werden kann andere Formate historischer Toninformationsträger zu verarbeiten.
+Unter Wiederverwendung mehrerer Komponenten aus der Verarbeitung der Lochplatten wurde eine frühe Lösung zur Digitalisierung von Notenrollen des Typs Hupfeld Phonola Solodant vorgestellt.
+Die Praktikabilität dieser Herangehensweise bestätigt sich durch die erfolgreiche Digitalisierung u.a. einer Skalenrolle dieses Formats. 
 
-Die in der Anwendung integrierten Analysemöglichkeiten können in ihrer aktuellen Form zur Beantwortung grundlegender Musikwissenschaftlicher Fragestellungen, wie etwa das ermitteln der Tonart eines Stückes, beitragen.
-Aber auch für weitergehende Untersuchungen wie der Vergleich von mehreren Medien des gleichen musikalischen Stückes werden Funktionen in der Form von Visualisierungen angeboten.
+Die in der Anwendung integrierten Analysemöglichkeiten können in ihrer aktuellen Form zur Beantwortung grundlegender Musikwissenschaftlicher Fragestellungen an den Bestand historischer Toninformationsträger, wie etwa das Ermitteln der Tonart eines Stückes, beitragen.
+Aber auch für weitergehende Untersuchungen wie den Vergleich mehrerer Medien des gleichen musikalischen Stückes sind Funktionen in der Form von Visualisierungen vorhanden.
 
 Im Vergleich mit der in \textcite[]{perretti_2014} erwähnten Anwendung zur Digitalisierung von Lochplatten ist vor allem hervorzuheben, dass die hier vorgestellte Anwendung, neben dem erstmaligen erstellen einer Konfigurationsdatei für das Format, keine weitere Eingabe bei der Umwandlung benötigt und diese automatisch vornimmt.
-Eine komperative Betrachtung der Digitalisierungsqualität zwischen beiden Anwendungen ist hingegen nicht möglich, da die von \textcite[]{perretti_2014} genutzte Anwendung weder öffentlich zugänglich noch in dem für einen Vergleich nötigen Maß dokumentiert ist.
-Aus denselben Gründen ist auch ein Vergleich des Verfahrens zur Digitalisierung von Notenrollen mit bereits existierenden Verfahren nur bedingt möglich.
-Sicher kann davon ausgegangen werden, dass alle Verfahren die die auf Notenrollen vorhandenen Steuerungsspuren auswerten und korrekt umsetzten, darunter die von \textcite[]{shi_2019, zoltan_1994, colmenares_2011} vorgestellten, originalgetreuere Ergebnisse liefern als es das hier vorgestellte Verfahren aktuell tut.
+Eine Komparative Betrachtung der Digitalisierungsqualität zwischen beiden Anwendungen ist hingegen nicht möglich, da die von \textcite[]{perretti_2014} genutzte Anwendung weder öffentlich zugänglich, noch umfassend dokumentiert ist.
 
-Ein wesentlicher Vorteil der hier vorgestellen Anwendung liegt, grade im Vergleich mit den meisten bekannten Verfahren, in der Konzipierung als offene, flexibel erweiterbare Anwendung.
+Aus denselben Gründen ist auch ein Vergleich des vorgestellten Verfahrens zur Digitalisierung von Notenrollen mit bereits existierenden Verfahren nur bedingt möglich.
+Sicher kann davon ausgegangen werden, dass alle Verfahren, die die auf Notenrollen vorhandenen Steuerungsspuren auswerten und korrekt umsetzten, darunter die von \textcite[]{shi_2019, zoltan_1994, colmenares_2011} vorgestellten, originalgetreuere Ergebnisse liefern als es das hier vorgestellte Verfahren in seiner aktuellen Form tut.
+
+Ein wesentlicher Vorteil der dieser Arbeit zugrundeliegenden Anwendung liegt, grade im Vergleich mit den meisten bekannten Verfahren, in der Konzipierung als offene, flexibel erweiterbare Software.
 Sie kann so zum einen von allen Interessierten genutzt und angepasst werden, zum anderen sind die genutzten Verfahren so für alle Nutzer:innen nachvollziehbar.
 
 Die in der Anwendung vorhandenen Analysewerkzeuge sind aktuell in Umfang und Tiefe noch nicht vergleichbar mit denen von spezieller Software für diesen Anwendungszweck wie etwa \textit{music21} \parencite[]{music21}.
 Im Gegensatz zu diesen bietet sie aber die Möglichkeit Analysen direkt auf den bei der Digitalisierung erzeugten Daten auszuführen und nicht erst auf der abschließend erzeugten Midi-Datei.
-Auch die direkte Erzeugung von Visualisierungen aus den vorhandenen Daten unterscheidet sie von üblichen Softwarelösungen für computergestützte Musikanalysen. % Wirklich?!
 
-Während die Digitalisierung neben einem einmaligen Erstellen von Konfigurationsdaten für ein Format keine weiteren Informationen benötigt, ist es wünschenswert die Zahl der erforderlichen Parameter in Zukunft weiter zu reduzieren.
+Während der Digitalisierungsprozess, neben dem einmaligen Erstellen eines Konfigurationsprofils für ein Format, keine weiteren Informationen benötigt, ist es wünschenswert die Zahl der erforderlichen Parameter in Zukunft weiter zu reduzieren.
 So sollte es etwa möglich sein den optimalen Threshold für die anfängliche Binarisierung der Bilddaten automatisch statt experimentell zu ermitteln.
-Dies würde auch die Verarbeitung von mit anderen Aufnahmemethoden als der im Musikinstrumentenmuseum genutzten erstellten Bilder vereinfachen.
+Dies würde auch die Verarbeitung von Bildern die mit anderen Aufnahmemethoden als der im Musikinstrumentenmuseum genutzten erstellt wurden vereinfachen.
 
-Auch die noch sich noch im Prototypstadium befindliche Verarbeitung von Notenrollen soll in Zukunft weiter verbessert werden.
+Auch die noch sich in einem frühen Stadium befindliche Verarbeitung von Notenrollen soll in Zukunft weiter ausgebaut werden.
 Insbesondere die Emulation des Abspielverhaltens der Originalabspielgeräte steht hier im Mittelpunkt.
 Dazu gehören etwa die korrekte Verarbeitung von Steuerungsspuren auf den Medien, sowie das automatische auslesen von auf einigen Medien vorhandenen Dynamikspuren.
-Auch andere Gerätespezifische Verhalten, wie etwa eine vermutete Änderung des Abspieltempos durch den sich beim Abspielen verändernden Umfang der auf- bzw. abgerollten Rolle sollen in Zukunft abgebildet werden.
+Auch andere gerätespezifische Verhalten, wie etwa die vermutete Änderung des Abspieltempos durch den sich beim Abspielen verändernden Umfang der auf- bzw. abgerollten Rolle, sollen in Zukunft emuliert werden.
 
 Die in der Software integrierten Analysetools beschränken sich aktuell auf eher grundlegende Analyseschritte und sollen in Zukunft durch weitere Komponenten erweitert werden.
-Dazu zählen Verfahren zum Erkennen von Mustern in verarbeiteten Medien, aber auch insbesondere Tools die den Vergleich zwischen Medien ermöglichen.
-Verfahren zum Vergleich von Stücken die auf historischen Toninformationsträgern und in einer anderen Form, wie etwa als Notenblatt, vorliegen sowie für Vergleiche über ganze Korpora von digitalisierten Toninformationsträgern stehen dabei im Fokus. 
+Dazu zählen Verfahren zum Erkennen von Mustern in verarbeiteten Medien, aber insbesondere auch Tools die einen erweiterten Vergleich zwischen mehreren Medien ermöglichen.
+Verfahren zum Vergleich von Stücken die auf historischen Toninformationsträgern und in einer anderen Form, wie etwa als Notenblatt, vorliegen, sowie für Vergleiche über ganze Korpora von digitalisierten Toninformationsträgern stehen dabei im Fokus. 
 
-Schlussendlich sind auch Verfahren zur Validierung der erzeugten Musikdaten wünschenswert.
-Während die Ergebnisse der Software aktuell vor allem qualitativ durch Musikwissenschaftler:innen begutachtet werden, sind hier auch Methoden des quantitativen Vergleichs wünschenswert.
-Denkbar wäre etwa ein, ähnlich dem von \textcite[]{colmenares_2011} genutzten Verfahren, Vergleich von Wellenformen zwischen mithilfe von Tonvorräten der Originalinstrumenten erstellter, digitalisierter Fassung und Originalaufnahmen.
+Schlussendlich ist auch die Umsetzung von Verfahren zur Validierung der erzeugten Musikdaten wünschenswert.
+Während die Ergebnisse der Software aktuell vor allem qualitativ durch Musikwissenschaftler:innen validiert werden, sind hier auch Methoden des quantitativen Vergleichs vorstellbar.
+Denkbar wäre etwa, ähnlich dem von \textcite[]{colmenares_2011} genutzten Verfahren, ein Vergleich von Wellenformen zwischen, mithilfe von Tonvorräten der Originalinstrumenten erstellter, digitalisierter Fassung und Aufnahmen der selben Medien auf den Originalabspielgeräten.
