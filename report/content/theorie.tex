@@ -6,21 +6,22 @@ Aber auch die bessere Verfügbarkeit, bedingt durch die hohe produzierte Stückz
 
 Die einzigen bekannten Arbeiten zur Digitalisierung von Lochplatten sind im Rahmen des SISAR-Projekts der Italian Mechanical Music Association (AMMI) entstanden \parencite[]{pedrazzini_2013,perretti_2014}.
 Im Rahmen dieses Projekts sollen verschieden Typen von historischen Toninformationsträgern digitalisiert werden.
-Dabei arbeiten die Autor:innen auch mit Lochplatten des Types Ariston, für die eine Anwendung entwickelt wurde, mit der Bilder dieser runden Medien in eine viereckige, einer Notenrolle ähnliche Darstellung transformiert werden können, um sie später mit Software zur Digitalisierung von Notenrollen verarbeiten zu können \parencite[]{perretti_2014}.
-Eine solche Anwendung wurde ebenfalls im Rahmen des Forschungsprojektes entwickelt \parencite[]{conversion}.
+Dabei arbeiten die Autor:innen auch mit Lochplatten des Types Ariston, für die eine Anwendung entwickelt wurde, mit der Bilder dieser runden Medien in eine viereckige, einer Notenrolle ähnlichen Darstellung transformiert werden können, um sie später mit Software zur Digitalisierung von Notenrollen verarbeiten zu können \parencite[]{perretti_2014}.
+Eine solche Digitalisierungsanwendung wurde ebenfalls im Rahmen des Forschungsprojektes entwickelt \parencite[]{conversion}.
 Die Umwandlung in eine Midi-Datei erfolgt dabei mittels hinterlegter Informationen zum Medienformat und den vorhandenen Spuren, das Ausrichten der Spuren auf dem Scan erfolgt manuell.
 
 Leider sind die eingesetzten Methoden praktisch undokumentiert, so dass sich weder zu Qualität und Funktionalität der entstehenden Digitalisate, noch zum aktuellen Entwicklungsstand des Verfahrens eine sinnvolle Einschätzung vornehmen lässt.
 Auch ist die eingesetzte Software weder als Quellcode noch in binärer Form öffentlich verfügbar, so dass auch auf diesem Weg kein Schluss auf die Güte des Vorgehens möglich ist.
 
-Dennoch können diese Arbeiten zeigen, dass die Digitalisierung von Lochplatten und Notenrollen viele Ähnlichkeiten aufweisen.
+Dennoch können diese Arbeiten zeigen, dass die Digitalisierung von Lochplatten und Notenrollen viele Ähnlichkeiten aufweist.
 Dazu gehört zum einen die ähnliche Art der Informationskodierung (durch Löcher), aber auch mechanische Eigenschaften der Abspielgeräte.
 Beide Formate werden durch luftbetriebene Mechanismen von den Abspielgeräten ausgelesen, so dass auch die Art der Informationsdekodierung grundsätzlich ähnlich ist.
 Dies legt nah die Digitalisierung der beiden Medienformate als gemeinsamen Themenbereich zu betrachten.
-Die vorhandenen Ansätze zur Digitalisierung von Notenrollen können folglich auch als relevant für Verfahren zur Digitalisierung von Lochplatten betrachtet werden.
+Die vorhandenen Ansätze zur Digitalisierung von Notenrollen können folglich auch als relevant für die Entwicklung von Verfahren zur Digitalisierung von Lochplatten betrachtet werden.
 
-Die ersten Überlegungen zu solchen Verfahren lassen sich in den 70er Jahren verorten, in den 90ern und frühen 2000ern existierten bereits mehrere Systeme im weiteren Umfeld der digitalen Verarbeitung von Notenrollen \parencite[63]{colmenares_2011}.
+Die ersten Überlegungen zu solchen Verfahren lassen sich in den 1970er Jahren verorten, in den 1990ern und frühen 2000ern existierten bereits mehrere Systeme im weiteren Umfeld der digitalen Verarbeitung von Notenrollen \parencite[63]{colmenares_2011}.
 Allgemein lässt sich feststellen, dass die Projekte aus dieser Zeit überwiegend durch interessierte Privatpersonen und weniger im Rahmen akademische Forschung entstanden sind.
+
 Eines der ersten Projekte dieser Art war das Philips Ampico-Apple System von Peter \textcite[]{stephens}, das die Digitalisierung von Notenrollen des Types Ampico ermöglichte.
 Ein späteres Beispiel ist die Entwicklung einer Lösung zur Digitalisierung von Notenrollen mehrerer Formate durch Wayne \textcite[]{stahnke_1996}.
 
@@ -29,7 +30,7 @@ Eine weitere größere Sammlung von digitalisierten Klavierrollen existierte auf
 
 Ziel dieser privaten Projekte war es primär die Information auf den Notenrollen zu konservieren und sie auf anderen Geräten wieder abspielbar zu machen.
 Gemein haben diese Enthusiasten-Projekte eine sehr beschränkte bis fehlende Dokumentation der Prozesse, die zur Digitalisierung genutzt wurden.
-Meist wurden die Verfahren entweder entweder gar nicht oder nur auf Mailinglisten oder, inzwischen häufig nicht mehr verfügbaren, privaten Websites dokumentiert.
+Meist wurden die Verfahren entweder gar nicht oder nur auf Mailinglisten und, inzwischen häufig nicht mehr verfügbaren, privaten Websites dokumentiert.
 Die verwendete Software ist meist proprietär und steht heute nicht mehr für eine Analyse zur Verfügung.
 Auch die für die erstellten Digitalisate verwendeten Dateiformate sind, insbesondere bei den älteren Projekten, proprietär und nur begrenzt dokumentiert.
 Bei größeren Sammlungen, wie etwa der der IAMMP, ist eine Nachvollziehbarkeit der Ersteller:innen und der genutzten Methoden zur Digitalisierung nur begrenzt gegeben.
@@ -39,27 +40,27 @@ Eine frühe wissenschaftliche Arbeit zur Digitalisierung von Notenrollen findet 
 Die Autor:innen beschreiben die Digitalisierung von Notenrollen des Types Welte-Mignon.
 Über einen Rollenscanner werden Bilder der Klavierrollen erzeugt, aus welchen nach der softwareseitigen Verarbeitung zwei Midi-Dateien generiert werden.
 Eine Midi-Datei enthält nur die rohen Informationen zu den Tönen auf der Notenrolle, die andere schließt auch die in der Notenrolle kodierten Informationen zu Dynamik ein.
-Die Autoren konnten, bedingt durch die verfügbare Technologie, einige Aspekte der Digitalisierung nur bedingt bzw. nur mit Hilfe manueller Korrekturen durchführen, so etwa das Erkennen von Expressionskurven und der Umgang mit Defekten an der Notenrolle, wie Rissen im Papier.
+Die Autoren konnten, auch bedingt durch die verfügbare Technologie, einige Aspekte der Digitalisierung nur bedingt bzw. nur mit Hilfe manueller Korrekturen durchführen, so etwa das Erkennen von Expressionskurven und der Umgang mit Defekten an der Notenrolle, wie Rissen im Papier.
 Sie nutzten bereits Techniken, die sich auch in späteren Arbeiten wiederfinden, so wird etwa der Rollenrande dynamisch über den Verlauf der Rolle verfolgt, um durch Deformationen des Papiers entstandene Ungenauigkeiten auszugleichen.
 
-\textcite[]{debrunner_201300} nutzt für die Digitalisierung von Notenrollen der Typen Welte-Philharmonie und Welte-Mignon T100 einen Zeilenscanner und eine eigene Software.
+\textcite[]{debrunner_201300} nutzt für die Digitalisierung von Notenrollen der Typen Welte-Philharmonie und Welte-Mignon T100 einen Zeilenscanner und eigene Software.
 Die verwendete Software ist dabei grundsätzlich in der Lage die Digitalisierung in eine Midi-Datei automatisch durchzuführen, benötigt aber bei einem signifikanten Teil der Rollen manuelle Korrekturen.
 Das genaue Digitalisierungsverfahren ist nicht dokumentiert, der Schwerpunkt der Arbeit liegt auf der Verarbeitung der auf den Notenrollen kodierten Steuerungsinformationen, welche ausführlich beschrieben werden.
 
-Eine Arbeit, die sich spezifisch mit den Herausforderungen der Erzeugung von MIDI Dateien aus bereits digitalisierten, in Matrizenform vorliegenden Notenrollen beschäftigt findet sich bei \textcite[]{colmenares_2011}.
+Eine Arbeit, die sich spezifisch mit den Herausforderungen der Erzeugung von MIDI Dateien aus bereits digitalisierten, in Matrizenform vorliegenden Notenrollen beschäftigt, findet sich bei \textcite[]{colmenares_2011}.
 Die Autor:innen nutzen dabei Digitalisate die mit der Technologie von \textcite[]{stahnke_1996} erzeugt wurden.
 Im Gegensatz zu dessen proprietärer Digitalisierungstechnologie setzen die Autor:innen aber einen Schwerpunkt darauf, ihren Umwandlungsprozess ausführlich zu dokumentieren.
 
 Sie gehen dabei sowohl allgemein auf das Dekodierungsverfahren für Notenrollen in Matrizenform ein, als auch insbesondere auf die Umsetzung der Kontrollspuren ins Midi-Format.
 Von Interesse ist insbesondere das von den Autoren zur Validierung ihrer Ergebnisse eingesetzte Verfahren.
-Sie führen dabei einen Wellenformvergleich von, aus den von ihnen erzeugten Midi-Dateien generierten, Audiodateien mit den von \textcite[]{stahnke_1996} selbst erzeugten und vertriebenen Audio-CDs der gleichen Notenrollen durch \parencite[70-72]{colmenares_2011}.
+Sie führen dafür einen Wellenformvergleich von, aus den von ihnen erzeugten Midi-Dateien generierten, Audiodateien mit den von \textcite[]{stahnke_1996} selbst erzeugten und vertriebenen Audio-CDs der gleichen Notenrollen durch \parencite[70-72]{colmenares_2011}.
 Dabei können sie die Genauigkeit ihres Verfahrens demonstrieren, das bis auf kleinere Abweichungen authentische Ergebnisse produziert.
 Problematisch scheint allerdings, dass die Genauigkeit dieser Validierungsmethode stark von der Genauigkeit der ursprünglichen, von \textcite[]{stahnke_1996} mittels eines prorietären, nicht öffentlich dokumentierten Prozesses durchgeführten, Digitalisierung abhängig ist.
 
 Das aktuellste und umfangreichste Vorhaben zur Digitalisierung von Notenrollen ist das Player Piano Projekt an der Stanford University.
-Dieses wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der eigenen Bibliothek Forscher:innen und anderen interessierten zugänglich zu machen \autocite[]{shi_2019}.
+Dieses wurde 2014 ins Leben gerufen um die umfangreiche Sammlung von Notenrollen in der eigenen Bibliothek für Forscher:innen und andere Interessierte zugänglich zu machen \autocite[]{shi_2019}.
 Aktuell befinden sich circa 20.000 Notenrollen in der Sammlung in Stanford, von denen ca. 1000 erfolgreich digitalisiert wurden \autocite[]{broadwell_2022}.
-Das Projekt fokussierte sich dabei zunächst auf die Digitalisierung von Notenrollen des Typs Welte-Mignon T-100, umfasst inzwischen aber auch die Digitalisierung Rollen anderer Formate.
+Das Projekt fokussierte sich dabei zunächst auf die Digitalisierung von Notenrollen des Typs Welte-Mignon T100, umfasst inzwischen aber auch die Digitalisierung von Rollen anderer Formate.
 
 Dafür wurde zunächst ein Gerät konstruiert, dass es erlaubt hochauflösende Bilder der Notenrollen anzufertigen.
 Teil des Scanprozesses ist dabei die Anwendung verschiedener automatischer Fehlerkorrekturen für Defekte der gescannten Notenrolle.
@@ -71,9 +72,9 @@ Auch die Funktionalität der Steuerungsspuren wird in dem von \textcite[521-522]
 Ebenso werden weitere Anpassungen vorgenommen, um das Abspielverhalten auf Originalabspielgeräten zu simulieren, wie etwa die leichte Temposteigerung, die durch die sich verändernden Rollendurchmesser beim Abspielen einer Notenrolle vermutet wird.
 Aus den generierten Midi-Dateien wird mittels eines generischen Software-Pianos eine Audiodatei generiert.
 
-Aktuell arbeiten die Autor:innen unter anderem am Pianolatron, einer webbasierten Softwarelösung die Notenrollen darstellen und interaktiv abspielen kann \parencite[]{vijoy_2022}.
+Aktuell arbeiten die Autor:innen unter anderem am Pianolatron, einer webbasierten Softwarelösung, die Notenrollen darstellen und interaktiv abspielen kann \parencite[]{vijoy_2022}.
 Die Software erlaubt es dabei beliebige Notenrollen aus dem Bestand von ca. 1000 digitalisierten Rollen abzuspielen, Parameter wie Abspielgeschwindigkeit und Lautstärke können interaktiv angepasst werden.
-Auch können verschiedene Parameter der Emulation der mechanischen Komponenten der Originalabspielgeräte angepasst werden, so dass sich, in Fällen in denen durch Verlust der Originalabspielgeräte keine notwendigerweise originalgetreue Emulation möglich ist, experimentell verschiedene Parameter getestet werden können.
+Auch können verschiedene Parameter der Emulation der mechanischen Komponenten der Originalabspielgeräte angepasst werden, so dass, in Fällen in denen durch Verlust der Originalabspielgeräte keine notwendigerweise originalgetreue Emulation möglich ist, experimentell verschiedene Parameter getestet werden können.
 Es bestehen weitere Interaktionsmöglichkeiten, so können Nutzer:innen etwa durch Auswählen von auf den Rollen vorhandenen und durch die Software erkannten Noten weitere Informationen zu diesen einsehen.
 Insgesamt bildet das Pianolatron schon im aktuellen Zustand eine umfangreiche und vielversprechende Abspiel- und Emulationslösung für Notenrollen.
 
